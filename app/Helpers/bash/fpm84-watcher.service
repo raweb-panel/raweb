@@ -1,0 +1,11 @@
+[Unit]
+Description=PHP-FPM Pool Watcher
+After=network.target
+
+[Service]
+ExecStart=/nginx/admin/public_html/app/Helpers/bash/fpm-84.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

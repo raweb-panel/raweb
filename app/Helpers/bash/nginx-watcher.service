@@ -1,0 +1,11 @@
+[Unit]
+Description=Nginx Vconf Watcher
+After=network.target
+
+[Service]
+ExecStart=/nginx/admin/public_html/app/Helpers/bash/nginx.sh
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

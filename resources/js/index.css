@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  @apply bg-gray-900 text-white;
+  font-family: 'Inter', sans-serif;
+}
+
+.el-menu-demo {
+  @apply bg-gray-800 text-white;
+  border-bottom: 1px solid #444;
+}
+
+.el-menu-demo .el-menu-item {
+  @apply text-white;
+}
+
+.el-menu-demo .el-menu-item:hover {
+  @apply bg-gray-700;
+}
+
+.el-card {
+  @apply bg-gray-800 text-white shadow-lg rounded-lg;
+}
+
+.el-descriptions {
+  @apply bg-gray-800 text-white;
+}
+
+.el-descriptions-item {
+  @apply border-gray-700;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-white font-bold;
+}
+
+a {
+  @apply text-blue-400 hover:text-blue-600;
+}
