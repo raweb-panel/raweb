@@ -6,7 +6,9 @@ import IPs from '../components/IPs.vue';
 import Ports from '../components/Ports.vue';
 import Php from '../components/Php.vue';
 import Logs from '../components/Logs.vue';
-import Settings from '../components/Settings.vue';
+import Panel_Settings from '../components/Panel_Settings.vue';
+import Nginx_Settings from '../components/Nginx_Settings.vue';
+import Components from '../components/Components.vue';
 import LogStreamer from '../components/LogStreamer.vue';
 
 const routes = [
@@ -17,7 +19,9 @@ const routes = [
   { path: '/ports', component: Ports },
   { path: '/php', component: Php },
   { path: '/logs', component: Logs },
-  { path: '/settings', component: Settings },
+  { path: '/panel-settings', component: Panel_Settings },
+  { path: '/nginx-settings', component: Nginx_Settings },
+  { path: '/components', component: Components },
   { path: '/log-streamer', component: LogStreamer },
 ];
 

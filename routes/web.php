@@ -51,14 +51,28 @@ Route::put('/api/logs/{id}', [LogController::class, 'update']);
 Route::delete('/api/logs/{id}', [LogController::class, 'destroy']);
 Route::get('/api/logs/stream', [LogController::class, 'streamLogs']);
 
-// Settings
-use App\Http\Controllers\SettingsController;
-Route::get('/api/settings', [SettingsController::class, 'index']);
-Route::post('/api/settings', [SettingsController::class, 'update']);
-Route::get('/api/panel-title', [SettingsController::class, 'getPanelTitle']);
+// Nginx Settings
+use App\Http\Controllers\NginxSettingsController;
+Route::get('/api/nginx_settings', [NginxSettingsController::class, 'index']);
+Route::post('/api/nginx_settings', [NginxSettingsController::class, 'update']);
+
+// Panel Settings
+use App\Http\Controllers\PanelSettingsController;
+Route::get('/api/panel_settings', [PanelSettingsController::class, 'index']);
+Route::post('/api/panel_settings', [PanelSettingsController::class, 'update']);
+Route::get('/api/panel-title', [PanelSettingsController::class, 'getPanelTitle']);
+
+// Components
+use App\Http\Controllers\ComponentsController;
+Route::get('/api/components', [ComponentsController::class, 'index']);
+Route::post('/api/components/install', [ComponentsController::class, 'install']);
+Route::post('/api/components/uninstall', [ComponentsController::class, 'uninstall']);
+Route::get('/api/components/install/{name}/logs', [ComponentsController::class, 'streamInstallLogs']);
+Route::get('/api/components/uninstall/{name}/logs', [ComponentsController::class, 'streamUninstallLogs']);
+
 
 // Catch-all route to serve the Vue application
-Route::get('/{any}', [SettingsController::class, 'app'])->where('any', '.*');
+Route::get('/{any}', [PanelSettingsController::class, 'app'])->where('any', '.*');
 
 
 

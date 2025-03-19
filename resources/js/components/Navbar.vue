@@ -75,9 +75,19 @@
                 <CodeBracketIcon class="h-5 w-5 inline-block mr-1" /> Php Pools
               </router-link>
 
-              <router-link to="/settings" class="nav-link">
-                <Cog8ToothIcon class="h-5 w-5 inline-block mr-1" /> Settings
-              </router-link>
+              <!-- Settings Menu Wrapper with ref -->
+              <div ref="settingsRef" class="relative">
+                <button @click="toggleSettingsMenu" class="nav-link">
+                  <Cog8ToothIcon class="h-5 w-5 inline-block mr-1" /> Settings
+                </button>
+                <div
+                  v-if="isSettingsMenuOpen"
+                  class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10 divide-y divide-gray-700">
+                  <router-link to="/panel-settings" class="nav-link block px-3 py-2">Panel Settings</router-link>
+                  <router-link to="/nginx-settings" class="nav-link block px-3 py-2">Nginx Settings</router-link>
+                  <router-link to="/components" class="nav-link block px-3 py-2">Components</router-link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -110,9 +120,14 @@
         <router-link to="/php" class="mobile-nav-link" @click="closeMenu">
           <CodeBracketIcon class="h-5 w-5 inline-block mr-1" /> Php Pools
         </router-link>
-        <router-link to="/settings" class="mobile-nav-link" @click="closeMenu">
+        <button @click="toggleSettingsMenu" class="mobile-nav-link">
           <Cog8ToothIcon class="h-5 w-5 inline-block mr-1" /> Settings
-        </router-link>
+        </button>
+        <div v-if="isSettingsMenuOpen" class="pl-4">
+          <router-link to="/panel-settings" class="mobile-nav-link" @click="closeMenu">Panel Settings</router-link>
+          <router-link to="/nginx-settings" class="mobile-nav-link" @click="closeMenu">Nginx Settings</router-link>
+          <router-link to="/components" class="mobile-nav-link" @click="closeMenu">Components</router-link>
+        </div>
       </div>
     </div>
   </nav>
@@ -135,11 +150,13 @@ import {
 const isMenuOpen = ref(false);
 const isNetworkMenuOpen = ref(false);
 const isMonitoringMenuOpen = ref(false);
+const isSettingsMenuOpen = ref(false);
 const panelTitle = ref('Nginx Manager');
 
 // Refs for submenu wrappers
 const networkRef = ref<HTMLElement | null>(null);
 const monitoringRef = ref<HTMLElement | null>(null);
+const settingsRef = ref<HTMLElement | null>(null);
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
@@ -149,6 +166,7 @@ function closeMenu() {
   isMenuOpen.value = false;
   isNetworkMenuOpen.value = false;
   isMonitoringMenuOpen.value = false;
+  isSettingsMenuOpen.value = false;
 }
 
 function toggleNetworkMenu() {
@@ -159,6 +177,10 @@ function toggleMonitoringMenu() {
   isMonitoringMenuOpen.value = !isMonitoringMenuOpen.value;
 }
 
+function toggleSettingsMenu() {
+  isSettingsMenuOpen.value = !isSettingsMenuOpen.value;
+}
+
 // Global click handler to close submenus when clicking outside
 function handleOutsideClick(event: MouseEvent) {
   if (networkRef.value && !networkRef.value.contains(event.target as Node)) {
@@ -166,6 +188,9 @@ function handleOutsideClick(event: MouseEvent) {
   }
   if (monitoringRef.value && !monitoringRef.value.contains(event.target as Node)) {
     isMonitoringMenuOpen.value = false;
+  }
+  if (settingsRef.value && !settingsRef.value.contains(event.target as Node)) {
+    isSettingsMenuOpen.value = false;
   }
 }
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use Illuminate\Support\Facades\File;
 
-class SettingsController extends Controller
+class NginxSettingsController extends Controller
 {
     public function index()
     {

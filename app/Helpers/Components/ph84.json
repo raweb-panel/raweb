@@ -1,0 +1,12 @@
+{
+    "name": "PHP 8.4 FPM",
+    "version": "8.4.0",
+    "installed": false,
+    "packages": [
+        "php84-cli"
+    ],
+    "repo": {
+        "enabled": false,
+        "url": "https:\/\/packages.sury.org\/php\/"
+    }
+}

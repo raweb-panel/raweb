@@ -1,0 +1,12 @@
+{
+    "name": "PHP 8.3 FPM",
+    "version": "8.3.0",
+    "installed": true,
+    "packages": [
+        "php8.3-cli"
+    ],
+    "repo": {
+        "enabled": false,
+        "url": "https:\/\/packages.sury.org\/php\/"
+    }
+}
