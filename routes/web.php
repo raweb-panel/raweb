@@ -41,16 +41,6 @@ Route::get('/api/ports/{port}/edit', [PortController::class, 'edit']);
 Route::put('/api/ports/{port}', [PortController::class, 'update']);
 Route::delete('/api/ports/{port}', [PortController::class, 'destroy']);
 
-// Logs
-use App\Http\Controllers\LogController;
-Route::get('/api/logs', [LogController::class, 'index']);
-Route::get('/api/logs_names', [LogController::class, 'index_names']);
-Route::get('/api/logs_stream_names', [LogController::class, 'stream_names']);
-Route::post('/api/logs', [LogController::class, 'store']);
-Route::put('/api/logs/{id}', [LogController::class, 'update']);
-Route::delete('/api/logs/{id}', [LogController::class, 'destroy']);
-Route::get('/api/logs/stream', [LogController::class, 'streamLogs']);
-
 // Nginx Settings
 use App\Http\Controllers\NginxSettingsController;
 Route::get('/api/nginx_settings', [NginxSettingsController::class, 'index']);

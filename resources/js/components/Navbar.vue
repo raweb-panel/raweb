@@ -58,19 +58,6 @@
                 </div>
               </div>
 
-              <!-- Monitoring Menu Wrapper with ref -->
-              <div ref="monitoringRef" class="relative">
-                <button @click="toggleMonitoringMenu" class="nav-link">
-                  <ChartBarIcon class="h-5 w-5 inline-block mr-1" /> Monitoring
-                </button>
-                <div
-                  v-if="isMonitoringMenuOpen"
-                  class="absolute left-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg z-10 divide-y divide-gray-700">
-                  <router-link to="/logs" class="nav-link block px-3 py-2">Logs</router-link>
-                  <router-link to="/log-streamer" class="nav-link block px-3 py-2">Log Streamer</router-link>
-                </div>
-              </div>
-
               <router-link to="/php" class="nav-link">
                 <CodeBracketIcon class="h-5 w-5 inline-block mr-1" /> Php Pools
               </router-link>
@@ -103,24 +90,20 @@
         <router-link to="/vhosts" class="mobile-nav-link" @click="closeMenu">
           <CpuChipIcon class="h-5 w-5 inline-block mr-1" /> Vhosts
         </router-link>
-        <button @click="toggleNetworkMenu" class="mobile-nav-link">
+        <button @click.stop="toggleNetworkMenu" class="mobile-nav-link">
           <LinkIcon class="h-5 w-5 inline-block mr-1" /> Network
         </button>
         <div v-if="isNetworkMenuOpen" class="pl-4">
           <router-link to="/ips" class="mobile-nav-link" @click="closeMenu">IPs</router-link>
           <router-link to="/ports" class="mobile-nav-link" @click="closeMenu">Ports</router-link>
         </div>
-        <button @click="toggleMonitoringMenu" class="mobile-nav-link">
+        <button @click.stop="toggleMonitoringMenu" class="mobile-nav-link">
           <ChartBarIcon class="h-5 w-5 inline-block mr-1" /> Monitoring
         </button>
-        <div v-if="isMonitoringMenuOpen" class="pl-4">
-          <router-link to="/logs" class="mobile-nav-link" @click="closeMenu">Logs</router-link>
-          <router-link to="/log-streamer" class="mobile-nav-link" @click="closeMenu">Log Streamer</router-link>
-        </div>
         <router-link to="/php" class="mobile-nav-link" @click="closeMenu">
           <CodeBracketIcon class="h-5 w-5 inline-block mr-1" /> Php Pools
         </router-link>
-        <button @click="toggleSettingsMenu" class="mobile-nav-link">
+        <button @click.stop="toggleSettingsMenu" class="mobile-nav-link">
           <Cog8ToothIcon class="h-5 w-5 inline-block mr-1" /> Settings
         </button>
         <div v-if="isSettingsMenuOpen" class="pl-4">

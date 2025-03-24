@@ -137,8 +137,8 @@
           <div class="mb-4">
             <label class="block text-sm font-semibold mb-1">Log Type</label>
             <select v-model="newVhost.log_type" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg">
-              <option v-for="log in logFormats" :key="log" :value="log">{{ log }}</option>
-              <option value="off">Off (access logs disabled)</option>
+              <option value="main">Main</option>
+              <option value="off">Off</option>
             </select>
           </div>
           <div class="flex justify-between">
@@ -232,24 +232,14 @@ const fetchIPs = async () => {
   }
 };
 
-const fetchLogFormats = async () => {
-  try {
-    const response = await axios.get('/api/logs_names');
-    logFormats.value = response.data.logs;
-  } catch (error) {
-    console.error('Error fetching log formats:', error);
-  }
-};
-
 const openCreateModal = () => {
   showCreateModal.value = true;
-  // Auto-select the first available option for IPv4, IPv6, HTTP port, SSL port, PHP version, and log type
   newVhost.value.ipv4 = ips.value.ipv4.length > 0 ? ips.value.ipv4[0].ip_address : 'none';
   newVhost.value.ipv6 = ips.value.ipv6.length > 0 ? ips.value.ipv6[0].ip_address : 'none';
   newVhost.value.http_port = ports.value.http.length > 0 ? ports.value.http[0].port_number : 'none';
   newVhost.value.ssl_port = ports.value.ssl.length > 0 ? ports.value.ssl[0].port_number : 'none';
   newVhost.value.php_version = phpVersions.value.length > 0 ? phpVersions.value[0].version : 'none';
-  newVhost.value.log_type = logFormats.value.length > 0 ? logFormats.value[0] : 'none';
+  newVhost.value.log_type = 'main'; // Set default log type to "main"
 };
 
 const createVhost = async () => {
@@ -298,6 +288,5 @@ onMounted(() => {
   fetchPorts();
   fetchIPs();
   fetchPhpVersions();
-  fetchLogFormats();
 });
 </script>

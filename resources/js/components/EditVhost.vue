@@ -62,7 +62,7 @@
       <div class="mb-4">
         <label class="block text-sm font-semibold mb-1">Log Type</label>
         <select v-model="vhost.log_type" class="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg">
-          <option v-for="log in logFormats" :key="log" :value="log">{{ log }}</option>
+          <option value="main">Main</option>
           <option value="off">Off</option>
         </select>
       </div>
@@ -138,15 +138,6 @@ const fetchIPs = async () => {
   }
 };
 
-const fetchLogFormats = async () => {
-  try {
-    const response = await axios.get('/api/logs_names');
-    logFormats.value = response.data.logs;
-  } catch (error) {
-    console.error('Error fetching log formats:', error);
-  }
-};
-
 const updateVhost = async () => {
   try {
     await axios.put(`/api/vhosts/${route.params.id}`, { ...vhost.value, nginxConfig: nginxConfig.value });
@@ -167,6 +158,5 @@ onMounted(() => {
   fetchPorts();
   fetchIPs();
   fetchPhpVersions();
-  fetchLogFormats();
 });
 </script>

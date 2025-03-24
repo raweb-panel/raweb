@@ -1,7 +1,7 @@
 {
     "name": "PHP 8.3 FPM",
     "version": "8.3.0",
-    "installed": true,
+    "installed": false,
     "packages": [
         "php8.3-cli"
     ],
